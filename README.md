@@ -1,0 +1,1 @@
+# AyurMinds-Authorization-Service
