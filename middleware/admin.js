@@ -1,15 +1,16 @@
-const Users = require("../models/userModel");
+const mongoRepository = require("../database/mongoRepository");
+const logger = require("../helpers/appLogger");
 
 const authAdmin = async (req, res, next) => {
   try {
     // Get user information by id
-    const user = await Users.findOne({
+    const user = await mongoRepository.user.findOne({
       _id: req.user.id,
     });
     if (user.role === "admin") {
       next();
     } else {
-        logger.error("Admin resources access denied");
+      logger.error("Admin resources access denied");
       return res.status(400).json({ msg: "Admin resources access denied" });
     }
   } catch (err) {
