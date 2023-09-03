@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    gender: {
+      type: String,
+    },
     password: {
       type: String,
       required: true,
@@ -33,10 +36,110 @@ const userSchema = new mongoose.Schema(
     contactNo: {
       type: String,
     },
-    languageId:{
-      type:String,
-      default:1
-    }
+    languageId: {
+      type: String,
+      default: 1,
+    },
+    isDoctor: {
+      type: Boolean,
+      default: false,
+    },
+    doctor: {
+      contactNo: String,
+      isVerified: {
+        type: Boolean,
+        default: false,
+      },
+      specializedIn: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Disease",
+        },
+      ],
+      verificationDocs: [
+        {
+          doc: String,
+          isVerified: Boolean,
+        },
+      ],
+      bio: String,
+      ratings: [
+        {
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          rate: Number,
+        },
+      ],
+      reviews: [
+        {
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          comment: String,
+          sentiment: Object,
+          diseases: [
+            {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Disease",
+            },
+          ],
+        },
+      ],
+      availablePlaces: [
+        {
+          name: String,
+          cordinate: Object,
+          timeSlots: [
+            {
+              daysType: String,
+              from: String,
+              to: String,
+              isAvailable: Boolean,
+            },
+          ],
+        },
+      ],
+    },
+    isPharmacist: {
+      type: Boolean,
+      default: false,
+    },
+    pharmacist: {
+      contactNo: String,
+      isVerified: {
+        type: Boolean,
+        default: false,
+      },
+      verificationDocs: [
+        {
+          doc: String,
+          isVerified: Boolean,
+        },
+      ],
+      bio: String,
+      ratings: [
+        {
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          rate: Number,
+        },
+      ],
+      reviews: [
+        {
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          comment: String,
+          sentiment: Object,
+        },
+      ],
+    },
   },
   { timestamps: true }
 );
