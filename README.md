@@ -1,1 +1,2 @@
 # AyurMinds-Authorization-Service
+[![Build and deploy Node.js app to Azure Web App - ayurminds-authorization-service](https://github.com/FYRP-2023/AyurMinds-Authorization-Service/actions/workflows/main_ayurminds-authorization-service.yml/badge.svg)](https://github.com/FYRP-2023/AyurMinds-Authorization-Service/actions/workflows/main_ayurminds-authorization-service.yml)
