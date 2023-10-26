@@ -4,6 +4,7 @@ const logger = require("../helpers/appLogger");
 const auth = (req, res, next) => {
   try {
     const token = req.header("Authorization");
+    logger.info(`token: ${token}`);
     if (!token) {
       logger.error("Invalid Authentication : Token not found");
       return res
